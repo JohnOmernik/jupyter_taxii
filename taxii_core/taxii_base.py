@@ -59,11 +59,18 @@ class Taxii(Integration):
         self.load_env(self.custom_evars)
         self.parse_instances()
 
-
+    def customDisconnect(self, instance):
+        self.instances[instance]['session'] = None
+        self.instances[instance]['connected'] = False
+        self.instances[instance]['server'] = None
+        self.instances[instance]['api_root'] = None
+        self.instances[instance]['taxii_collections'] = None
 
     def customAuth(self, instance):
         result = -1
         inst = None
+        breqAuth = False
+
         # JUPYTER_TAXII_CONN_URL_DEFAULT="https://cti-taxii.mitre.org/taxii"
         # %taxiiuser@https://cti-taxii.mitre.org:443?path=/taxii&useproxy=1&authreq=0
 
@@ -89,20 +96,23 @@ class Taxii(Integration):
                 inst['proxies'] = proxies
             else:
                 inst['proxies'] = None
+            if 'authreq' in inst['options']:
+                if inst['options']['authreq'] == True or inst['options']['authreq'] == 1:
+                    breqAuth = True
+
             if self.opts['taxii_verify_ssl'][0] == 0 or self.opts['taxii_verify_ssl'][0] == False:
                 myverify = False
             else:
                 myverify = True
+
+            if self.debug:
+                print("myverify: %s" % myverify)
 
             myurl = inst['scheme'] + "://" + inst['host'] + ":" + str(inst['port']) + inst['options'].get('path', '/')
             inst['full_url'] = myurl
             if self.debug:
                 print(inst['full_url'])
             inst['session'] = None
-            breqAuth = False
-            if 'authreq' in inst['options']:
-                if inst['options']['authreq'] == True or inst['options']['authreq'] == 1:
-                    breqAuth = True
             if breqAuth:
                 print("Taxii Auth not yet handled")
             else:
