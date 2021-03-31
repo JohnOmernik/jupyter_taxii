@@ -100,7 +100,7 @@ class Taxii(Integration):
                 if inst['options']['authreq'] == True or inst['options']['authreq'] == 1:
                     breqAuth = True
 
-            if self.opts['taxii_verify_ssl'][0] == 0 or self.opts['taxii_verify_ssl'][0] == False:
+            if int(self.opts['taxii_verify_ssl'][0]) == 0 or self.opts['taxii_verify_ssl'][0] == False:
                 myverify = False
             else:
                 myverify = True
