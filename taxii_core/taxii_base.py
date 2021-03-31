@@ -27,13 +27,13 @@ class Taxii(Integration):
     # The name of the integration
     name_str = "taxii"
     instances = {}
-    custom_evars = ['taxii_conn_default', 'taxii_group_collections', 'taxii_verify_ssl', 'taxii_supress_ssl_warnings', 'taxii_path_to_certs']
+    custom_evars = ['taxii_conn_default', 'taxii_group_collections', 'taxii_verify_ssl', 'taxii_suppress_https_warnings', 'taxii_path_to_certs']
     # These are the variables in the opts dict that allowed to be set by the user. These are specific to this custom integration and are joined
     # with the base_allowed_set_opts from the integration base
 
     # These are the variables in the opts dict that allowed to be set by the user. These are specific to this custom integration and are joined
     # with the base_allowed_set_opts from the integration base
-    custom_allowed_set_opts = ["taxii_conn_default", "taxii_verify_ssl", "taxii_suppress_ssl_warnings", "taxii_path_to_certs", "taxii_group_collections"]
+    custom_allowed_set_opts = ["taxii_conn_default", "taxii_verify_ssl", "taxii_suppress_https_warnings", "taxii_path_to_certs", "taxii_group_collections"]
 
 
 
@@ -42,7 +42,7 @@ class Taxii(Integration):
     myopts = {}
     myopts['taxii_conn_default'] = ["default", "Default instance to connect with"]
     myopts['taxii_verify_ssl'] = [True, "Verify SSL connection is valid"]
-    myopts['taxii_supress_ssl_warnings'] = [0, "Hide warnings about SSL issues"]
+    myopts['taxii_suppress_https_warnings'] = [0, "Hide warnings about SSL issues"]
     myopts['taxii_path_to_certs'] = ["", "Path to custom SSL bundle for taxii connections"]
     myopts['taxii_group_collections'] = [0, "Group collections got query, if 0, we add fields: collection name and collection_id - May take longer"]
 
@@ -67,7 +67,7 @@ class Taxii(Integration):
         # JUPYTER_TAXII_CONN_URL_DEFAULT="https://cti-taxii.mitre.org/taxii"
         # %taxiiuser@https://cti-taxii.mitre.org:443?path=/taxii&useproxy=1&authreq=0
 
-        if self.opts['taxii_supress_ssl_warnings'][0] == 1:
+        if self.opts['taxii_suppress_https_warnings'][0] == 1:
             import warnings
             warnings.filterwarnings('ignore', "Unverified HTTPS request is being made")
 
