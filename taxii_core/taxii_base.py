@@ -117,8 +117,9 @@ class Taxii(Integration):
                         if self.debug:
                             print("Added %s (ID: %s) to collections" % (tc.title, tc.id))
                     result = 0
-                except:
+                except Exceptions as e:
                     print("Unable to connect to Taxii instance %s at %s" % (instance, inst["conn_url"]))
+                    print("Exception: %s" % e)
                     result = -2
         return result
 
