@@ -1,0 +1,14 @@
+bulld/*
+build/**
+__pycache__
+__pycache__/*
+__pycache__/**
+*/__pycache__
+**/__pycache__
+jupyter_integration_base.egg-info
+jupyter_integration_base.egg-info/*
+jupyter_integration_base.egg-info/**
+dist
+dist/*
+dist/**
+build
