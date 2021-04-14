@@ -86,13 +86,7 @@ class Taxii(Integration):
 
         if inst is not None:
             if inst['options'].get('useproxy', 0) == 1:
-                proxystr = self.get_proxy_str(instance)
-                if self.debug:
-                    print("Proxy String: %s" % proxystr)
-
-                prox_pass = self.get_proxy_pass(proxystr, instance)
-                proxurl = proxystr.replace("@", ":" + prox_pass + "@")
-                proxies = {'http': proxurl, 'https': proxurl}
+                proxies = self.retProxy(instance)
                 inst['proxies'] = proxies
             else:
                 inst['proxies'] = None
