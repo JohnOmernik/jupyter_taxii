@@ -264,9 +264,40 @@ class Taxii(Integration):
 
 
 # Display Help can be customized
-    def customHelp(self):
+    def customOldHelp(self):
         self.displayIntegrationHelp()
         self.displayQueryHelp('external_references.external_id = T1134.001')
+
+    def retCustomDesc(self):
+        return "Jupyter integration for working with Taxii Servers"
+
+
+    def customHelp(self, curout):
+        n = self.name_str
+        mn = self.magic_name
+        m = "%" + mn
+        mq = "%" + m
+        table_header = "| Magic | Description |\n"
+        table_header += "| -------- | ----- |\n"
+        out = curout
+
+        out += "## Taxii Queries/Syntax\n"
+        out += "----------------\n"
+        out += "A Taxii Filter is 'property' 'operator' value' as seen below in example\n"
+        out += "- You may use multiple lines of filters, they are ANDed together\n"
+        out += "- operator must be in %s\n" % self.allowed_ops
+        out += "\n\n"
+
+        qexamples = []
+        qexamples.append(["myinstance", "external_references.external_id = T1134.001", "Run a Taxii query on instance myinstance where the property is external_references.external_id, the operator is = and the value is T1134.001"])
+        qexamples.append(["", "external_references.external_id = T1134.001", "Run a Taxii query on the default where the property is external_references.external_id, the operator is = and the value is T1134.001"])
+        out += self.retQueryHelp(qexamples)
+
+        return out
+
+
+
+
 
 
     def displayQueryHelp(self, q_example):
