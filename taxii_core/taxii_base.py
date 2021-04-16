@@ -74,7 +74,7 @@ class Taxii(Integration):
         # JUPYTER_TAXII_CONN_URL_DEFAULT="https://cti-taxii.mitre.org/taxii"
         # %taxiiuser@https://cti-taxii.mitre.org:443?path=/taxii&useproxy=1&authreq=0
 
-        if int(self.opts['taxii_suppress_https_warnings'][0]) == 1 or self.opts['taxii_sppress_https_warnings'][0] == True:
+        if int(self.opts['taxii_suppress_https_warnings'][0]) == 1 or self.opts['taxii_suppress_https_warnings'][0] == True:
             import warnings
             warnings.filterwarnings('ignore', "Unverified HTTPS request is being made")
 
