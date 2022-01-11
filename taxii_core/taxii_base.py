@@ -86,10 +86,11 @@ class Taxii(Integration):
 
         if inst is not None:
             if inst['options'].get('useproxy', 0) == 1:
-                proxies = self.retProxy(instance)
-                inst['proxies'] = proxies
+                myproxies = self.retProxy(instance)
             else:
-                inst['proxies'] = None
+                myproxies = None
+
+
             if 'authreq' in inst['options']:
                 if inst['options']['authreq'] == True or inst['options']['authreq'] == 1:
                     breqAuth = True
@@ -111,7 +112,7 @@ class Taxii(Integration):
                 print("Taxii Auth not yet handled")
             else:
                 try:
-                    inst['server'] = taxii2client.v20.Server(inst['full_url'], verify=myverify, proxies=inst['proxies'])
+                    inst['server'] = taxii2client.v20.Server(inst['full_url'], verify=myverify, proxies=myproxies)
                     inst['api_root'] = inst['server'].api_roots[0] # Maybe do multiple?
                     inst['taxii_collections'] = []
 
