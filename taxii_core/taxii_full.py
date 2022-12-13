@@ -20,7 +20,7 @@ import jupyter_integrations_utility as jiu
 #import IPython.display
 from IPython.display import display_html, display, Javascript, FileLink, FileLinks, Image
 import ipywidgets as widgets
-from taxi_core._version import __desc__
+from taxii_core._version import __desc__
 
 
 @magics_class
