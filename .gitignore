@@ -6,8 +6,8 @@ __pycache__/**
 */__pycache__
 **/__pycache__
 jupyter_taxii.egg-info
-jupyter_taxii-info/*
-jupyter_taxii-info/**
+jupyter_taxii.egg-info/*
+jupyter_taxii.egg-info/**
 dist
 dist/*
 dist/**
